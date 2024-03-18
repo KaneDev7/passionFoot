@@ -26,23 +26,23 @@ const router = createBrowserRouter([
         element: <Detail/>,
         children : [
           {
-            path: '/detail/:id',
-            element: <Score/>,
-          },
-          {
-            path: '/detail/:id/match',
+            path: '/detail/:competitionId',
             element: <Match/>,
           },
           {
-            path: '/detail/:id/classement',
+            path: '/detail/:competitionId/classement',
             element: <Classement/>,
           },
           {
-            path: '/detail/:id/equipes',
+            path: '/detail/:competitionId/equipes',
             element: <Equipes/>,
           },
           {
-            path: '/detail/:id/player',
+            path: '/detail/:competitionId/score',
+            element: <Score/>,
+          },
+          {
+            path: '/detail/:competitionId/player',
             element: <Player/>,
           },
         ]

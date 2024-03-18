@@ -4,9 +4,11 @@ import {useParams} from 'react-router-dom'
 
 
 export default function CompetitionItem({ competition }) {
-  const id = Number(useParams().id)
+  const competitionId = Number(useParams().competitionId)
+  
 
-  const isActif = id === competition.id
+
+  const isActif = competitionId === competition.id
     if( competition?.code === 'PL' || 
     competition?.code === 'BL1' || 
     competition?.code === 'SA' || 
@@ -15,7 +17,7 @@ export default function CompetitionItem({ competition }) {
 
     return (
         <Link to={`detail/${competition?.id}`} >
-            <li className={`flex items-center gap-4 p-2 mb-4 rounded-md bg-gray-100 hover:bg-gray-200 ${isActif && 'bg-gray-200'}`}>
+            <li className={`flex items-center gap-4 p-2 mb-4 rounded-md  hover:bg-gray-100 ${isActif && 'bg-gray-100'}`}>
                    
                     <img
                         className='w-[30px] h-[30px] rounded-full '

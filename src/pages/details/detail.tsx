@@ -13,7 +13,7 @@ export default function Detail() {
       <div className='flex-1'>
         <DetailBanier />
         <DetailNav />
-        <div className='border-2 min-h-[1000px] p-3 '>
+        <div className='border-2 min-h-[1000px] p-3 bg-white '>
           <Outlet />
           {/* <CompetitionLayout/> */}
         </div>
