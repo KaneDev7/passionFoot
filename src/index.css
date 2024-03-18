@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.globalWidth{
+    width: 1200px;
+    margin:  0 auto;
+  }
+
+.gradient{
+  background: linear-gradient(90deg, #1e40af37 0%, rgba(30, 64, 175, 0.148) 50%, #112871f0 84%);
+}
