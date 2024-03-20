@@ -22,7 +22,7 @@ export default function Sidebar() {
   }, [])
 
   return (
-    <div className='min-w-[250px] min-h-[1000px] shadow-sm p-5 bg-white rounded-md '>
+    <div className='min-w-[250px] max-h-[450px] sticky top-10 shadow-sm p-5 bg-white rounded-md '>
       <div className=''>
         <h2 className='text-2xl font-bold my-5 '>Compétions </h2>
         <ul>

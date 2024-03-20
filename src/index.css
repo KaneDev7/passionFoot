@@ -4,6 +4,10 @@
 
 body{
   background: #f4f4f5f0;
+  background-image: url('/public/bg.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .globalWidth{
     max-width: 1200px;
@@ -12,7 +16,7 @@ body{
   }
 
 .gradient{
-  background: linear-gradient(90deg, #1e40af37 0%, rgba(30, 64, 175, 0.148) 50%, #112871f0 84%);
+  background: linear-gradient(90deg, #d2d5dd68 0%, rgba(130, 144, 187, 0.39) 30%, #112771bc 84%);
 }
 
 

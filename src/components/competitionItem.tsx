@@ -6,8 +6,6 @@ import {useParams} from 'react-router-dom'
 export default function CompetitionItem({ competition }) {
   const competitionId = Number(useParams().competitionId)
   
-
-
   const isActif = competitionId === competition.id
     if( competition?.code === 'PL' || 
     competition?.code === 'BL1' || 

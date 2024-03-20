@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import FootballData from 'footballdata-api-v2';
 import { useParams } from 'react-router-dom';
 import { API_KEY } from '../../constants';
 import MatchItem from '../../components/matchItem';
 import MatchItemLoad from '../../components/load/matchItemLoad';
-
-
+import MatchFilter from '../../components/matchFilter';
+import { GlobalContext } from '../../context/ContextProvider';
 
 
 export default function Match() {
   const [matches, setMathes] = useState([])
   const [isloading, setIsloading] = useState(true)
   const competitionId = Number(useParams().competitionId)
+  const {selectedMatchDay } = useContext(GlobalContext)
 
 
   useEffect(() => {
@@ -20,13 +21,14 @@ export default function Match() {
     const fetchData = async () => {
       const { matches: data } = await footballData.getMatchesFromCompetition({
         competitionId: competitionId,
+        matchday : selectedMatchDay
       })
       setMathes(data)
       setIsloading(false)
     }
     fetchData()
 
-  }, [competitionId])
+  }, [competitionId, selectedMatchDay])
 
   
   // useEffect(() => {
@@ -43,7 +45,8 @@ export default function Match() {
 
   return (
     <div >
-      <ul className='overflow-y-auto max-h-[1000px] '>
+      <MatchFilter/>
+      <ul className='overflow-y-auto  '>
         {
           matches?.map((match, index) => (
             !isloading ?

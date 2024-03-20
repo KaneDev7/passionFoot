@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import FootballData from 'footballdata-api-v2';
 import { useParams } from 'react-router-dom';
-import { API_KEY } from '../../constants';
+import { API_KEY } from '../../constants'
 
 
 export default function Score() {
