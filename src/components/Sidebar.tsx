@@ -3,16 +3,17 @@ import { useFetch } from '../hooks/usefetch'
 import { API_KEY } from '../constants';
 import FootballData from 'footballdata-api-v2';
 import CompetitionItem from './competitionItem';
+import { Competition, CompetitionBase, CompetitionResult } from 'footballdata-api-v2/dist/results';
 
 
 export default function Sidebar() {
   // const {data, isloading, error} = useFetch('competions')
-  const [competitions, setCompetions] = useState([])
+  const [competitions, setCompetions] = useState<Competition[]>([])
 
   useEffect(() => {
     const footballData = new FootballData(API_KEY);
     const fetchData = async () => {
-      const { competitions: data } = await footballData.getCompetitions({
+      const { competitions: data }= await footballData.getCompetitions({
         areas: [2088, 2072, 2081, 2114, 2205, 2224],
       })
       const dataSort = data?.sort((a,b) =>  b?.numberOfAvailableSeasons - a?.numberOfAvailableSeasons)
@@ -27,7 +28,7 @@ export default function Sidebar() {
         <h2 className='text-2xl font-bold my-5 '>Compétions </h2>
         <ul>
           {
-            competitions?.map(competition => (
+            competitions?.map((competition) => (
               <CompetitionItem competition={competition} key={competition?.id} />
             ))
           }

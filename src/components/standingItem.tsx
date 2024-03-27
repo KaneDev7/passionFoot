@@ -1,10 +1,12 @@
 import axios from 'axios'
-import React, {useEffect, useState, useContext} from 'react'
-import { API_KEY, KEY, SECRET, teamShortName } from '../constants'
-import FootballData from 'footballdata-api-v2'
-import { useParams } from 'react-router-dom'
+import {useEffect, useState, useContext} from 'react'
 import { GlobalContext } from '../context/ContextProvider'
+import { StandingResult, Team } from 'footballdata-api-v2/dist/results';
+import { StandingLiveScoreType } from '../typescript/Standing';
 
+type StandingItemPropos = {
+    standing : StandingLiveScoreType
+}
 
 function hasCommonElement(arr1, arr2) {
     const set = new Set(arr1);
@@ -16,21 +18,15 @@ function hasCommonElement(arr1, arr2) {
     return false; 
 }
 
-export default function StandingItem({ standing }) {
-    const [imgSrc, setImgSrc] = useState('')
-  const { competionTeams  } = useContext(GlobalContext)
+export default function StandingItem({ standing }: StandingItemPropos) {
+    const [imgSrc, setImgSrc] = useState <string | undefined >('')
+  const { competionTeams } : {competionTeams : Team[] } = useContext(GlobalContext)
 
-  console.log('competionTeams', competionTeams)
-  console.log('standing', standing?.name.split(' '))
+
     useEffect(() => {
-       const teamNames =  competionTeams?.map((item, index) => {
-       return standing?.name.split(' ')
-       })
-    //    console.log('teamNames', teamNames)
-       const matchTeam  = competionTeams.filter((item, index) => hasCommonElement(standing?.name.split(' '),[item?.shortName]) ||
-        item?.shortName === standing?.name ) 
-       
-       setImgSrc(matchTeam[0]?.crestUrl)
+       const matchTeam = competionTeams?.filter((item) => hasCommonElement(standing?.name.split(' '),[item?.shortName]) ||
+        item?.shortName === standing?.name) 
+       setImgSrc(matchTeam[0]?.crestUrl as string | undefined)
       },[])
 
 

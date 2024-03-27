@@ -21,7 +21,7 @@ export default function Score() {
 
   return (
     <div>
-     score {scores?.competition?.name}
+     score 
     </div>
   )
 }

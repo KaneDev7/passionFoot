@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react'
-import FootballData from 'footballdata-api-v2';
+import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom';
-import { API_KEY, KEY, SECRET } from '../../constants';
+import {KEY, SECRET } from '../../constants';
 import MatchItemLoad from '../../components/load/matchItemLoad';
 import axios from 'axios';
 import { GlobalContext } from '../../context/ContextProvider';
 import StandingItem from '../../components/standingItem';
+import { StandingLiveScoreType } from '../../typescript/Standing';
 
 
 const tableHeadeEl = ['Pos', 'Equipe','MP', 'W.', 'D.', 'L', 'GF.', 'GA', 'GD','PTS']
 
 export default function Classement() {
-  const [standings, setStandings] = useState([])
+  const [standings, setStandings] = useState<StandingLiveScoreType[]>([])
   const [isloading, setIsloading] = useState(true)
   const {competitionId :competition_id } = useContext(GlobalContext)
 
@@ -22,7 +22,8 @@ export default function Classement() {
     const fetchData = async () => {
       setIsloading(true)
       const data = await axios.get(`https://livescore-api.com/api-client/competitions/standings.json?competition_id=${competition_id}&key=${KEY}&secret=${SECRET}`)
-      setStandings(data?.data?.data?.table)
+      const table : StandingLiveScoreType[] = data?.data?.data?.table
+      setStandings(table)
       setIsloading(false)
     }
     fetchData()
@@ -53,8 +54,6 @@ export default function Classement() {
       </table>
     </div>
   
-
-     
     </div>
   )
 }

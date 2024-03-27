@@ -6,9 +6,9 @@ export default function MatchFilter() {
     const [matchDays, setMatchDays] = useState<number[]>([])
     const [value, setValue] = useState(currentMatchday)
 
-    const handleChange = (e) => {
-        setValue(e.target.value)
-        setSelectedMatchDay(e.target.value)
+    const handleChange = (event : React.ChangeEvent<HTMLSelectElement>) => {
+        setValue(event.target.value)
+        setSelectedMatchDay(event.target.value)
     }
 
     useEffect(() => {

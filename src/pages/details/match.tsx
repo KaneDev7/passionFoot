@@ -6,10 +6,11 @@ import MatchItem from '../../components/matchItem';
 import MatchItemLoad from '../../components/load/matchItemLoad';
 import MatchFilter from '../../components/matchFilter';
 import { GlobalContext } from '../../context/ContextProvider';
+import { MatchFromCompetition } from 'footballdata-api-v2/dist/results';
 
 
 export default function Match() {
-  const [matches, setMathes] = useState([])
+  const [matches, setMathes] = useState<MatchFromCompetition[]>()
   const [isloading, setIsloading] = useState(true)
   const competitionId = Number(useParams().competitionId)
   const {selectedMatchDay } = useContext(GlobalContext)
@@ -19,7 +20,7 @@ export default function Match() {
     const footballData = new FootballData(API_KEY);
     setIsloading(true)
     const fetchData = async () => {
-      const { matches: data } = await footballData.getMatchesFromCompetition({
+      const { matches: data }  = await footballData.getMatchesFromCompetition({
         competitionId: competitionId,
         matchday : selectedMatchDay
       })
@@ -30,18 +31,7 @@ export default function Match() {
 
   }, [competitionId, selectedMatchDay])
 
-  
-  // useEffect(() => {
-  //   const footballData = new FootballData(API_KEY);
-  //   setIsloading(true)
-  //   const fetchData = async () => {
-  //     const data = await footballData.getTeamsFromCompetition({
-  //       competitionId: competitionId,
-  //     })
-  //   }
-  //   fetchData()
 
-  // }, [competitionId])
 
   return (
     <div >

@@ -5,6 +5,7 @@ import FootballData from 'footballdata-api-v2';
 import { API_KEY } from '../constants';
 import DetailBanerLoad from '../components/load/detailBanerLoad'
 import { GlobalContext } from '../context/ContextProvider';
+import { Competition, CompetitionResult, Team, TeamResult } from 'footballdata-api-v2/dist/results';
 
 
 export default function DetailBanier() {
@@ -14,12 +15,13 @@ export default function DetailBanier() {
     setCompetionTeams,
     setCompetitionId
   } = useContext(GlobalContext)
-  const [competition, setCompetion] = useState({})
+  const [competition, setCompetion] = useState<Competition>()
   const [isloading, setIsloading] = useState(true)
 
   const competitionId = Number(useParams().competitionId)
 
-  const updateCompetitionId = (competionCode) => {
+
+  const updateCompetitionId = (competionCode : string | null) => {
     switch (competionCode) {
       case 'PL':
         setCompetitionId(2)
@@ -40,7 +42,7 @@ export default function DetailBanier() {
 
     }
   }
-  const updateTotalMatchDay = (competionCode) => {
+  const updateTotalMatchDay = (competionCode : string | null) => {
     switch (competionCode) {
       case 'PL' || 'PD' || 'SA' || 'FL1':
         setTotalMatchDay(38)
@@ -56,7 +58,7 @@ export default function DetailBanier() {
     const footballData = new FootballData(API_KEY);
     const fetchData = async () => {
       setIsloading(true)
-      const data = await footballData.getCompetition({ id: competitionId })
+      const data  : CompetitionResult = await footballData.getCompetition({ id: competitionId })
       setCompetion(data)
       setCurrentMatchday(data?.currentSeason?.currentMatchday)
       updateTotalMatchDay(data?.code)
@@ -70,7 +72,7 @@ export default function DetailBanier() {
     const fetchData = async () => {
       try {
         const footballData = new FootballData(API_KEY);
-        const { teams } = await footballData.getTeamsFromCompetition({ competitionId })
+        const { teams } : TeamResult = await footballData.getTeamsFromCompetition({ competitionId })
         setCompetionTeams(teams)
       } catch (error) {
         console.log(error)

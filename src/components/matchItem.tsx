@@ -3,9 +3,13 @@ import { IoIosInformationCircleOutline } from "react-icons/io";
 import { FaChartLine } from "react-icons/fa6";
 import moment from 'moment';
 import { teamIds } from '../constants';
+import { MatchFromCompetition } from 'footballdata-api-v2/dist/results';
 
+type MatchProps = {
+    match : MatchFromCompetition
+}
 
-export default function MatchItem({ match }) {
+export default function MatchItem({ match } : MatchProps) {
     
     const statusColor = match?.status === 'SCHEDULED' ? 
     'bg-green-400/20 text-green-900' :

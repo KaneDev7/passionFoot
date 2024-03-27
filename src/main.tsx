@@ -10,6 +10,7 @@ import Match from './pages/details/match.js'
 import Classement from './pages/details/classement.js'
 import Equipes from './pages/details/equipes.js'
 import Player from './pages/details/player.js'
+import SingleTeam from './pages/details/singleTeam.js'
 
 
 const router = createBrowserRouter([
@@ -23,27 +24,31 @@ const router = createBrowserRouter([
       },
       {
         path: '/',
-        element: <Detail/>,
-        children : [
+        element: <Detail />,
+        children: [
           {
             path: '/detail/:competitionId',
-            element: <Match/>,
+            element: <Match />,
           },
           {
             path: '/detail/:competitionId/classement',
-            element: <Classement/>,
+            element: <Classement />,
           },
           {
             path: '/detail/:competitionId/equipes',
-            element: <Equipes/>,
+            element: <Equipes />,
+          },
+          {
+            path: '/detail/:competitionId/equipes/team/:teamId',
+            element : <SingleTeam/>
           },
           {
             path: '/detail/:competitionId/score',
-            element: <Score/>,
+            element: <Score />,
           },
           {
-            path: '/detail/:competitionId/player',
-            element: <Player/>,
+            path: '/detail/:competitionId/player/:palyerId',
+            element: <Player />,
           },
         ]
       }

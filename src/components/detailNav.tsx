@@ -1,4 +1,3 @@
-import React from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
@@ -18,7 +17,7 @@ export default function DetailNav() {
   return (
     <div className=''>
       <div className='bg-black text-white '>
-        <ul className='flex '>
+        <ul className='flex capitalize'>
         
           <Link to={`/detail/${competitionId}`}>
             <li className={`${matchActif && 'bg-blue-600'} p-3 flex-1 hover:bg-blue-600 `} >  match  </li>
@@ -36,10 +35,6 @@ export default function DetailNav() {
             <li className={`${scoreActif && 'bg-blue-600'} p-3 flex-1  hover:bg-blue-600`} >  Score  </li>
           </Link>
 
-          <Link to={`/detail/${competitionId}/player`} >
-            <li className={`${playerActif && 'bg-blue-600'} p-3 flex-1 hover:bg-blue-600 `} >  Joueur </li>
-
-          </Link>
         </ul>
       </div>
     </div>

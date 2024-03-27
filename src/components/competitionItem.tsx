@@ -1,9 +1,12 @@
-import React from 'react'
+import { Competition } from 'footballdata-api-v2/dist/results'
 import { Link } from 'react-router-dom'
 import {useParams} from 'react-router-dom'
 
+type CompetitionProps = {
+    competition: Competition
+}
 
-export default function CompetitionItem({ competition }) {
+export default function CompetitionItem({ competition}: CompetitionProps ) {
   const competitionId = Number(useParams().competitionId)
   
   const isActif = competitionId === competition.id
@@ -19,7 +22,7 @@ export default function CompetitionItem({ competition }) {
                    
                     <img
                         className='w-[30px] h-[30px] rounded-full '
-                        src={competition?.emblemUrl || competition?.area?.ensignUrl}
+                        src={competition?.emblemUrl as string | undefined}
                         alt="" />
                 <p className=' font-medium'> {competition?.name} </p>
 
